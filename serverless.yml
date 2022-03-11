@@ -1,0 +1,37 @@
+service: myserverlesschalenge
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  profile: serverlessUser
+
+plugins:
+    - serverless-s3-sync
+    - serverless-webpack
+
+package:
+    individually: true
+
+custom:
+    s3Sync:
+        - bucketName:
+            myservelessapidatepolindromedatefinder-gabrielforster
+          localDir: node_modules
+
+functions:
+    getUser:
+        handler: lambdas/getUser.handler
+        events:
+            - http:
+                  path: get-user/{ID}
+                  method: GET
+                  cors: true
+
+resources:
+    Resources:
+        DemoBucketUpload:
+            Type: AWS::S3::Bucket
+            Properties:
+              BucketName: myservelessapidatepolindromedatefinder-gabrielforster
