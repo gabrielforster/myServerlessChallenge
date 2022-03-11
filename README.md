@@ -11,7 +11,7 @@ Para a criação dessa API, foram utilizadas as seguintes tencologias:
  -  Serviços da AWS: API Gateway e Lambda
 
 ## Como usar
-A request à API deve ser realizado contendo um <a href='#"ID"'>"id"</a> da data,
+A request à API deve ser realizado contendo um <a href='#ID'>"id"</a> da data,
 no final do endpoint -> https://6tplelga2g.execute-api.us-east-1.amazonaws.com/dev/get-user/IDdaDataAqui
 
 ## ID
