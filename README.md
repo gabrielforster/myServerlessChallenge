@@ -1,7 +1,7 @@
 <h1 align='center'>myAPIServerlessChallenge</h1>
 
 ## Descrição
-Desafio de criar uma API Serverless que retor a próxima data considerada palíndromo
+Desafio de criar uma API Serverless que retorna a próxima data considerada palíndromo
 
 ## Tecnologias
 Para a criação dessa API, foram utilizadas as seguintes tencologias:
