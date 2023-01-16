@@ -1,37 +1,44 @@
-service: myserverlesschalenge
-
-frameworkVersion: '3'
+service: serveress-api-palindrome-date
+frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs12.x
-  profile: serverlessUser
+  runtime: nodejs14.x
 
 plugins:
-    - serverless-s3-sync
-    - serverless-webpack
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-offline-watcher
 
 package:
-    individually: true
+  individually: true
 
 custom:
-    s3Sync:
-        - bucketName:
-            myservelessapidatepolindromedatefinder-gabrielforster
-          localDir: node_modules
+  serverless-offline-watcher:
+    - path: src/functions/**.ts
+      command: echo "Files changed!"
+
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude:
+      - aws-sdk
+    target: node14
+    platform: node
+    packager: npm
 
 functions:
-    getUser:
-        handler: lambdas/getUser.handler
-        events:
-            - http:
-                  path: get-user/{ID}
-                  method: GET
-                  cors: true
+  check-next-paindrome-date:
+    handler: lambdas/check-next-palindrome-date.handler
+    events:
+      - http:
+          path: check-next-paindrome-date/{year}/{month}/{day}
+          method: GET
 
-resources:
-    Resources:
-        DemoBucketUpload:
-            Type: AWS::S3::Bucket
-            Properties:
-              BucketName: myservelessapidatepolindromedatefinder-gabrielforster
+  hello:
+    handler: lambdas/hello.handler
+    events:
+     - http:
+        path: hello
+        method: GET
